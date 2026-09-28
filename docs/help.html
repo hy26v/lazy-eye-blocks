@@ -1,88 +1,125 @@
 <!doctype html>
+<!-- ABOUTME: Shared shell for the game and its supporting pages. -->
+<!-- ABOUTME: Provides common navigation, metadata, and site-wide styles. -->
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="lazy, eye, disease, amblyopia, condition, treatment, training, dihoptic, game, free, online">
-        <meta name="description" content="free online dihoptic blocks game">
+        <meta name="keywords" content="lazy eye, amblyopia, visual exercise, blocks game">
+        <meta name="description" content="A dichoptic blocks game with adjustable red and blue channels.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="icon.ico"  type="image/x-icon"> 
+        <meta name="theme-color" content="#101216">
+        <link rel="icon" href="icon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/main.css">
 
         <title>Help</title>
 
 
-            <script src="js/main.js"></script>
 
     </head>
+    <body class="site-body">
+        <div class="site-shell">
+                <header class="site-header">
+                    <a class="site-brand" href="index.html" aria-label="Lazy Eye Blocks home">
+                        <span class="brand-mark" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span>
+                        </span>
+                        <span>Lazy Eye Blocks</span>
+                    </a>
+                    <nav class="site-nav" aria-label="Main navigation">
+                        <a href="index.html" >Home</a>
+                        <a href="exercise.html">Play</a>
+                        <a href="help.html" aria-current="page">Help</a>
+                        <a href="about.html" >About</a>
+                    </nav>
+                </header>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="exercise.html">Exercise</a>
-            <a href="help.html">Help</a>
-            <a href="about.html">About</a>
+            <main class="site-page info-page help-page">
+    <header class="page-intro">
+        <p class="page-eyebrow">Player guide</p>
+        <h1>Set up a session that works for you.</h1>
+        <p>Adjust the eye colors, tile mix, board, and speed before or during a game.</p>
+    </header>
+
+    <div class="help-layout">
+        <nav class="help-toc" aria-label="On this page">
+            <p>On this page</p>
+            <a href="#color-setup">Color setup</a>
+            <a href="#tile-mix">Tile mix</a>
+            <a href="#game-settings">Board and speed</a>
+            <a href="#run-stats">Run stats</a>
+            <a href="#controls">Controls</a>
+            <a href="#saved-settings">Saved settings</a>
         </nav>
 
-    <body>
-        <h1>Help</h1>
+        <div class="help-sections">
+            <section class="doc-section" id="color-setup">
+                <p class="section-index">Color setup</p>
+                <h2>Set the colors for each eye</h2>
+                <p>With anaglyph glasses on, tune each eye color until its test block disappears through the opposite lens but stays visible through the intended lens. The black preview matches the game background.</p>
+                <ol>
+                    <li>Open the game and choose <strong>Settings</strong>, then <strong>Left eye color</strong>.</li>
+                    <li>Look through your right lens and adjust the color until the test block blends into the black background. Check that it remains visible through your left lens.</li>
+                    <li>Repeat for <strong>Right eye color</strong>, using your left lens to hide the block and your right lens to see it.</li>
+                </ol>
+                <p>Color perception and glasses vary, so adjust the colors in your own setup.</p>
+            </section>
 
-<h2>Colors configuration</h2>
+            <section class="doc-section" id="tile-mix">
+                <p class="section-index">Tile mix</p>
+                <h2>Choose how colors are assigned</h2>
+                <p><strong>Color by shapes</strong> gives each new shape one eye color. <strong>Color by cells</strong> assigns a color to each cell independently.</p>
+                <p>In <strong>Red / blue tile mix</strong>, adjust the chance for each channel in 5% steps. The red and blue shares always add up to 100%.</p>
+            </section>
 
-<h4>Left/Right eye colors configuration</h4>
-To configure properly left/right eye colors for a more productive session, do the following:
-<ul>
-    <li>Put on your anaglyph glasses</li>
-    <li>Open <a href="exercise.html" target="_blank">blocks game</a></li>
-    <li>Click on the <i>Settings</i> button</li>
-    <li>Click on the <i>Left/Right eye color</i> button</li>
-    <li>You will see a colored rectangle and a pallette with colors gradually changing from red to blue. This palette is
-        clickable, upon click on the palette the color of the colored rectangle above will change.
-    </li>
-    <li>Now, close your healthy eye and try to adjust the color of the colored rectangle that is above the palette, so
-        it would completely match the color of a background. In other words, the colored rectangle must be visible for
-        your healthy eye and almost (better completely) invisible for your lazy eye
-    </li>
-    <li>
-        Adjust the color for the other eye in the same manner, so it would be visible for your lazy eye and almost
-        (better completely) invisible for your healthy eye
-    </li>
-</ul>
+            <section class="doc-section" id="game-settings">
+                <p class="section-index">Playfield</p>
+                <h2>Adjust the board and speed</h2>
+                <ul>
+                    <li><strong>Board size</strong> changes rows and columns. The board resizes to fit the available screen.</li>
+                    <li><strong>Speed level</strong> changes how quickly pieces fall. You can lock the level to keep the pace steady.</li>
+                    <li>Settings can be changed between games or from the in-game toolbar.</li>
+                </ul>
+            </section>
 
-<h4>Coloring modes</h4>
-There are two coloring modes implemented:
-<ul>
-    <li><i>Coloring by shapes</i> - means that each shape will be randomly (equal chances for red and blue) assigned
-        a color.
-    </li>
-    <li><i>Coloring by cells</i> - means that each cell of the shape will be randomly assigned a color.</li>
-</ul>
-Coloring mode can be selected by click on <i>Settings</i>><i>Color by shapes</i>/<i>Color by cells</i>.
+            <section class="doc-section" id="run-stats">
+                <p class="section-index">During a run</p>
+                <h2>Read your stats</h2>
+                <dl class="guide-definitions">
+                    <div><dt>Score</dt><dd>Points earned. Clearing several rows at once earns more points.</dd></div>
+                    <div><dt>Lines cleared</dt><dd>The total number of full rows removed from the board.</dd></div>
+                    <div><dt>Level</dt><dd>The current fall speed setting.</dd></div>
+                    <div><dt>Next piece</dt><dd>A preview of the piece that will enter play after the current one lands.</dd></div>
+                </dl>
+            </section>
 
-<h2>Board size adjustment</h2>
-The board size can be changed. To do so: <i>Settings</i>><i>Board size</i>. Things to keep in mind:
-<ul>
-    <li>The board size can be changed even during exercise in progress</li>
-    <li>The game will always try to fit a board in the screen, try to find best ratio between columns and rows to get a better picture.</li>
-</ul>
+            <section class="doc-section" id="controls">
+                <p class="section-index">Controls</p>
+                <h2>Move and manage pieces</h2>
+                <dl class="guide-definitions guide-controls">
+                    <div><dt>Left / right</dt><dd>Move one cell.</dd></div>
+                    <div><dt>Down</dt><dd>Move down one cell.</dd></div>
+                    <div><dt>Up</dt><dd>Rotate the piece.</dd></div>
+                    <div><dt>Space</dt><dd>Drop the piece.</dd></div>
+                    <div><dt>P</dt><dd>Pause or resume.</dd></div>
+                    <div><dt>Q / Escape</dt><dd>Start a new game.</dd></div>
+                    <div><dt>G</dt><dd>Show or hide the grid.</dd></div>
+                </dl>
+            </section>
 
-<h2>Speed level adjustment</h2>
-The difficulty of the game grows gradually. It becomes faster and faster with number of cleared lines.
-<ul>
-    <li>Speed level can be changed - <i>Settings</i>><i>Speed level</i></li>
-    <li>Speed level can be locked - it means that game won't became faster than current speed level. To do so, click on
-        <i>Settings</i>><i>Speed level</i>><i>Speed level unlocked</i></i></li>
-</ul>
+            <section class="doc-section" id="saved-settings">
+                <p class="section-index">Your browser</p>
+                <h2>Settings are saved automatically</h2>
+                <p>Colors, tile mix, board size, and speed settings stay in this browser between visits. Use <strong>Save settings</strong> and <strong>Load settings</strong> in the Settings menu to manage a saved copy manually.</p>
+            </section>
+        </div>
+    </div>
+</main>
 
-<h2>Keyboard controls</h2>
-<ul>
-    <li><i>Down/Right/Left</i> - Moves current shape one cell down/right/left</li>
-    <li><i>Up</i> - Rotates current shape.</li>
-    <li><i>Space</i> - Drops current shape to the end of the board.</li>
-    <li><i>q/Esc</i> - Restart current game.</li>
-    <li><i>p/Pause</i> - Pause current game.</li>
-    <li><i>g</i> - Enable/disable grid.</li>
-</ul>
 
-<h2>Save/Load settings</h2>
-The color, board size, speed level settings can be saved in the browser`s local storage with a click on <i>Settings</i>><i>Save settings</i>.
-You can load them back by clicking on <i>Settings</i>><i>Load settings</i>.
+                <footer class="site-footer">
+                    <span>A blocks game built for both eyes.</span>
+                    <a href="about.html#credits">Credits and license</a>
+                </footer>
+        </div>
     </body>
 </html>

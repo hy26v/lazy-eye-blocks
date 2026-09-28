@@ -1,3 +1,5 @@
+// ABOUTME: Builds the full-screen game page and loads its runtime dependencies.
+// ABOUTME: Supplies the game scripts and shared page shell data.
 const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helper');
 
 const scripts = [
@@ -5,15 +7,10 @@ const scripts = [
     { src: 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js' },
 ];
 
-const links = [
-    { rel: 'stylesheet', href: 'css/main.css' },
-];
-
 module.exports = () => {
     const root = getRootTemplate();
     const page = getCompiledTemplate(`${__dirname}/page.hbs`);
     const data = {
-        links,
         scripts,
         title: 'Exercise',
         showNavigation: false,

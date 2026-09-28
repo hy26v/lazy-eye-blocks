@@ -1,3 +1,5 @@
+// ABOUTME: Defines identifiers for application and gameplay states.
+// ABOUTME: Provides shared constants for menus, modes, and game transitions.
 // app states
 export const MAIN_MENU_STATE = 'MAIN_MENU';
 export const SETTINGS_MENU_STATE = 'SETTINGS_MENU';
@@ -5,6 +7,7 @@ export const SPEED_SETTINGS_MENU_STATE = 'SPEED_SETTINGS_MENU';
 export const LEFT_EYE_COLOR_PICKER_MENU_STATE = 'LEFT_EYE_COLOR_PICKER_MENU';
 export const RIGHT_EYE_COLOR_PICKER_MENU_STATE = 'RIGHT_EYE_COLOR_PICKER_MENU';
 export const BOARD_SIZE_SETTINGS_STATE = 'BOARD_SIZE_SETTINGS_MENU';
+export const TILE_COLOR_DISTRIBUTION_STATE = 'TILE_COLOR_DISTRIBUTION_MENU';
 export const BLOCKS_STATE = 'BLOCKS';
 export const GAME_OVER_STATE = 'GAME_OVER_STATE';
 

@@ -1,8 +1,28 @@
+// ABOUTME: Styles the centered menu panel shared across application screens.
+// ABOUTME: Sets menu width, spacing, surface, and overflow behavior.
+@import '../../../consts.scss';
+
 .ui-menu {
-    // TODO try to get rid of flex box?
-    height: 100%;
+    width: min(100%, 430px);
+    max-height: 100%;
+    overflow-y: auto;
+    padding: clamp(1.25rem, 4vw, 2.25rem);
     display: flex;
-    flex-flow: column;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: center;
+    gap: 0.65rem;
+    color: $base-white;
+    background: $surface;
+    border: 1px solid $border-muted;
+    border-radius: 10px;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 520px) {
+    .ui-menu {
+        width: 100%;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
 }

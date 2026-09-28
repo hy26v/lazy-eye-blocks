@@ -1,4 +1,6 @@
-import { TETRIS_BONUS } from '../../config';
+// ABOUTME: Advances falling shapes and resolves board collisions.
+// ABOUTME: Scores cleared rows and spawns replacement shapes.
+import { LINE_CLEAR_POINTS } from '../../config';
 import { getState, setState, setStateSilently } from '../../state';
 import { BLOCKS_GAME_OVER, BLOCKS_GAME_PLAYING } from '../../state/consts';
 import { requestAnimationFrame } from '../../web-api-polyfills';
@@ -39,6 +41,7 @@ function logic() {
             currentShape,
             linesCleared,
             coloringMode,
+            redTilePercentage,
             increaseSpeedLevel,
         } = getState();
 
@@ -76,8 +79,9 @@ function logic() {
             if (linesClearedInACurrentTick > 0) {
                 const stateUpdates = {};
                 // check total lines cleared -> adjust speedLevel
-                const newScore = score + ((linesClearedInACurrentTick === 4)
-                    ? TETRIS_BONUS : linesClearedInACurrentTick);
+                const scoreMultiplier = Math.max(speedLevel, 1);
+                const newScore = score
+                    + LINE_CLEAR_POINTS[linesClearedInACurrentTick] * scoreMultiplier;
 
                 const totalClearedLines = linesCleared + linesClearedInACurrentTick;
                 const newSpeedLevel = getSpeedLevel(totalClearedLines);
@@ -90,17 +94,19 @@ function logic() {
                     });
                 }
 
-                Object.assign(stateUpdates, { score: newScore });
+                Object.assign(stateUpdates, {
+                    score: newScore,
+                    linesCleared: totalClearedLines,
+                });
 
                 // update state
-                setStateSilently({ linesCleared: totalClearedLines });
                 setState({ ...stateUpdates });
             }
 
             // spawn new shape
-            setStateSilently({
-                currentShape: nextShape,
-                nextShape: createRandomShape(columns, coloringMode),
+            setStateSilently({ currentShape: nextShape });
+            setState({
+                nextShape: createRandomShape(columns, coloringMode, redTilePercentage),
             });
         }
         // call itself recursively and update logic and timeout id

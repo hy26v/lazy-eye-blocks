@@ -1,3 +1,6 @@
+// ABOUTME: Provides collision-aware movement operations for the active falling shape.
+// ABOUTME: Implements directional movement, rotation, and hard-drop state transitions.
+
 /* eslint-disable no-param-reassign */
 import { EMPTY_BOARD_CELL } from './consts';
 
@@ -92,6 +95,10 @@ export const checkCollisions = (shape, board) => {
  * @param {number} dy y coordinate increment.
  */
 function moveShape(shape, board, dx, dy) {
+    if (shape.isDropped) {
+        return;
+    }
+
     shape.x += dx;
     shape.y += dy;
 
@@ -108,6 +115,10 @@ export const moveShapeRight = (shape, board) => moveShape(shape, board, 1, 0);
 export const moveShapeDown = (shape, board) => moveShape(shape, board, 0, 1);
 
 export const fireDown = (shape, board) => {
+    if (shape.isDropped) {
+        return;
+    }
+
     // until collision happens
     while (!checkCollisions(shape, board)) {
         // move shape down by 1
@@ -117,9 +128,14 @@ export const fireDown = (shape, board) => {
     // this shape will remain 'drowned' by 1 in a wall of in the
     // other shape
     shape.y -= 1;
+    shape.isDropped = true;
 };
 
 export const rotateShape = (shape, board) => {
+    if (shape.isDropped) {
+        return;
+    }
+
     // get all possible forms of given shape
     const { possibleShapeForms, currentShapeFormIndex } = shape;
 

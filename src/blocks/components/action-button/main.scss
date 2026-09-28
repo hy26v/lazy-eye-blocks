@@ -1,5 +1,18 @@
+// ABOUTME: Styles the pause, restart, and back controls in the game toolbar.
+// ABOUTME: Defines quiet neutral buttons with clear hover and focus behavior.
+@import '../../../consts.scss';
+
 .action-button {
+    min-height: 40px;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid $border-muted;
+    border-radius: 5px;
     color: $base-white;
-    margin-left: 2vw;
-    background-color: $base-gray;
+    background-color: $surface-raised;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #30353e;
+        border-color: $light-gray;
+    }
 }

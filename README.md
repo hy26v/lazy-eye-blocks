@@ -26,6 +26,9 @@ I have a lazy eye myself. I was born with a huge difference in sight between the
 * Install dependencies with ```npm install```
 * Run development server: ```npm run start```
 
+### GitHub Pages
+Run `npm ci` and `npm run build:prod`, then commit the generated `docs/` files with the source changes. In the repository's Pages settings, select **Deploy from a branch**, branch `master`, folder `/docs`. The site's links and assets use relative paths, so it works at a project URL such as `https://<owner>.github.io/<repository>/`.
+
 ### Testing
 All tests are located under */test* folder. I've decided to use [mocha](https://mochajs.org/) as a test runner and [chai](https://www.chaijs.com/) as an assertion library.
 * */test/main.js* is a test entry point for the webpack bundling, all tests should be included here.

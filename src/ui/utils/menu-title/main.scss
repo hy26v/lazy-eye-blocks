@@ -1,11 +1,22 @@
+// ABOUTME: Styles menu headings as the visual anchor for each menu screen.
+// ABOUTME: Sets heading scale, alignment, and a subtle separating rule.
 @import '../../../consts.scss';
 
 .ui-menu-title {
-    @include menu-base-style;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 2px solid $base-white;
-    background-color: $base-black;
-    font-size: calc(0.5rem + 1vw);
+    width: 100%;
+    margin: 0 0 0.35rem;
+    padding: 0 0 1rem;
+    border: 0;
+    border-bottom: 1px solid $border-muted;
+    background: transparent;
+    color: $base-white;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-align: center;
+
+    &:disabled {
+        opacity: 1;
+        cursor: default;
+    }
 }

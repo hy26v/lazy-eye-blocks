@@ -1,8 +1,15 @@
+// ABOUTME: Defines the shared interface palette and component color mixins.
+// ABOUTME: Keeps frame and menu colors separate from the red/blue game content.
 // colors
-$base-black: black;
-$base-white: white;
-$base-gray: #313842;
-$light-gray: #D3D3D3;
+$base-black: #101216;
+$playfield-black: #000;
+$base-white: #f1f2f3;
+$base-gray: #272b32;
+$light-gray: #c4c8ce;
+$surface: #191c22;
+$surface-raised: #21252d;
+$border-muted: #3b414b;
+$text-muted: #a9afb8;
 
 
 @mixin default-border {

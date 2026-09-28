@@ -1,21 +1,227 @@
+// ABOUTME: Defines the game screen layout for the board, toolbar, and stats rail.
+// ABOUTME: Adapts the playfield and live stats for desktop and narrow screens.
 @import '../consts.scss';
 
 .game-container {
     height: 100%;
+    width: min(1160px, 100%);
+    min-width: 0;
+    min-height: 0;
     display: flex;
     flex-flow: column;
-    justify-content: center;
 }
 
 .action-button-row {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+    flex: 0 0 auto;
     display: flex;
-    flex-flow: row;
     align-items: center;
-    justify-content: flex-end;
-    opacity: 0.5;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 0 0.85rem;
+    border-bottom: 1px solid $border-muted;
+}
+
+.game-toolbar-title {
+    color: $base-white;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.game-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.game-layout {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.game-sidebar {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: $surface;
+    border: 1px solid $border-muted;
+    border-radius: 8px;
+}
+
+.game-sidebar-heading {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid $border-muted;
+    color: $base-white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.game-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+}
+
+.game-stat {
+    padding: 0.5rem 0.65rem;
+    background: $surface-raised;
+    border-left: 2px solid $border-muted;
+    border-radius: 3px;
+}
+
+.game-stat-label {
+    color: $text-muted;
+    font-size: 0.78rem;
+}
+
+.game-stat-value {
+    margin-top: 0.22rem;
+    color: $base-white;
+    font-size: 1.35rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.game-stat:last-child {
+    grid-column: 1 / -1;
+}
+
+.game-stats-note {
+    color: $text-muted;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+.next-piece-card {
+    min-height: 0;
+    flex: 1 1 auto;
+    padding: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    background: $surface-raised;
+    border-radius: 4px;
+}
+
+.next-piece-grid {
+    min-height: 84px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 22px);
+    grid-template-rows: repeat(4, 22px);
+    align-content: center;
+    justify-content: center;
+    gap: 3px;
+    background: $playfield-black;
+    border-radius: 3px;
+}
+
+.next-piece-cell {
+    width: 22px;
+    height: 22px;
+}
+
+@media (max-width: 760px) {
+    .game-layout {
+        grid-template-columns: minmax(0, 1fr) 200px;
+        gap: 0.75rem;
+    }
+
+    .game-sidebar {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        height: 100%;
+    }
+
+    .action-button-row {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-bottom: 0.65rem;
+    }
+
+    .game-toolbar-title {
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    .game-toolbar-actions {
+        gap: 0.35rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .game-layout {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding-top: 0.75rem;
+    }
+
+    .game-canvas-wrapper {
+        flex: 0 0 min(58vh, 430px);
+        min-height: 270px;
+    }
+
+    .game-sidebar {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.55rem;
+        height: auto;
+    }
+
+    .game-sidebar-heading,
+    .next-piece-card {
+        grid-column: 1 / -1;
+    }
+
+    .game-sidebar-heading {
+        padding-bottom: 0.5rem;
+    }
+
+    .game-stats {
+        display: contents;
+    }
+
+    .game-stat:last-child {
+        grid-column: auto;
+    }
+
+    .game-stat {
+        padding: 0.55rem;
+    }
+
+    .game-stat-value {
+        font-size: 1.25rem;
+    }
+
+    .next-piece-card {
+        min-height: 112px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .next-piece-grid {
+        min-height: 88px;
+        width: 112px;
+        grid-template-columns: repeat(4, 19px);
+        grid-template-rows: repeat(4, 19px);
+    }
+
+    .next-piece-cell {
+        width: 19px;
+        height: 19px;
+    }
 }

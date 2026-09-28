@@ -1,20 +1,30 @@
+// ABOUTME: Styles reusable menu actions and their keyboard and pointer states.
+// ABOUTME: Keeps action buttons readable and consistent across menu screens.
 @import '../../../consts.scss';
 
 @mixin menu-base-style {
     @include default-color;
-    width: 60vw;
-    margin: 1vh 3vw 3vh 1vw;
+    width: 100%;
+    margin: 0;
 }
 
 
 .ui-menu-item {
     @include menu-base-style;
-    @include default-border;
-
-    background-color: $base-gray;
+    border: 1px solid $border-muted;
+    border-radius: 5px;
+    padding: 0.78rem 1rem;
+    background-color: $surface-raised;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease;
 
     &:hover { 
-        background-color: $base-black;
+        background-color: #30353e;
+        border-color: $light-gray;
+    }
+
+    &:active {
+        background-color: $base-gray;
     }
 }
-

@@ -1,3 +1,5 @@
+// ABOUTME: Defines defaults, limits, and visual constants used by the game.
+// ABOUTME: Provides shared configuration values for game logic and the UI.
 // app configuration
 
 // interval between game ticks
@@ -9,7 +11,8 @@ export const DECENT_RATE_DECREMENT_STEP = 75;
 
 export const SPEED_LEVEL_INCREMENT = 5;
 // amount of bonus score points for clearing 4 lines simultaneously
-export const TETRIS_BONUS = 10;
+// Points awarded for clearing 1, 2, 3, or 4 rows in one move.
+export const LINE_CLEAR_POINTS = [0, 100, 300, 500, 800];
 
 export const BACKGROUND_COLOR = '#000000';
 export const GRID_COLOR = '#8f99a8';
@@ -26,11 +29,8 @@ export const INITIAL_BOARD_ROWS_COUNT = 15;
 export const MINIMUM_BOARD_ROWS_COUNT = 4;
 export const DEFAULT_MARGIN = 10;
 
-// specifies approximately how much of the shapes/cells should be
-// colored for specific eye
-// this number must be between 0 and 1 exclusively
-// check blocks/utils/shape-creation-utils.js
-export const LEFT_RIGHT_DISTRIBUTION = 0.5;
+// Default share of spawned cells assigned to the left eye (red by default).
+export const DEFAULT_RED_TILE_PERCENTAGE = 50;
 
 // key to lookup in a local storage during save\load of settings
 export const LOCAL_STORAGE_SETTINGS_KEY = 'c8d6669b-2153-4780-b345-9be69d36fc9d';

@@ -1,15 +1,15 @@
+// ABOUTME: Builds the public help page from its content template.
+// ABOUTME: Marks the active navigation page and supplies its title.
 const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helper');
-
-const scripts = [{ src: 'js/main.js' }];
 
 module.exports = () => {
     const root = getRootTemplate();
     const page = getCompiledTemplate(`${__dirname}/page.hbs`);
 
     const data = {
-        scripts,
         title: 'Help',
         showNavigation: true,
+        isHelp: true,
         body: page(),
     };
 

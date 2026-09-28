@@ -1,3 +1,5 @@
+// ABOUTME: Sizes the game canvas to its responsive playfield container.
+// ABOUTME: Keeps canvas pixels sharp and preserves the board's display scale.
 import { getState } from '../../state';
 
 // percent of the wrapper space to take
@@ -13,6 +15,6 @@ export default function () {
     const { width, height } = wrapper.getBoundingClientRect();
     gameCanvas.setAttribute('width', width * FACTOR);
     gameCanvas.setAttribute('height', height * FACTOR);
-    gameCanvas.style.width = `width: ${width * FACTOR}px;`;
+    gameCanvas.style.width = `${width * FACTOR}px`;
     gameCanvas.style.height = `height: ${height * FACTOR}px`;
 }

@@ -1,7 +1,16 @@
+// ABOUTME: Builds the public home page for Lazy Eye Blocks.
+// ABOUTME: Supplies shared navigation state and the page title.
 const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helper');
 
 module.exports = () => {
     const root = getRootTemplate();
     const page = getCompiledTemplate(`${__dirname}/page.hbs`);
-    return { code: root({ showNavigation: true, title: 'Lazy eye exercise tool', body: page() }) };
+    return {
+        code: root({
+            showNavigation: true,
+            isHome: true,
+            title: 'Lazy Eye Blocks',
+            body: page(),
+        }),
+    };
 };

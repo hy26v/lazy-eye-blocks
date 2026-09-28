@@ -1,3 +1,5 @@
+// ABOUTME: Provides shared gameplay operations and game timer calculations.
+// ABOUTME: Initializes and resets game state, board data, and spawned shapes.
 import {
     BASE_DESCENT_RATE,
     DECENT_RATE_DECREMENT_STEP,
@@ -6,6 +8,7 @@ import {
 
 import {
     MAIN_MENU_STATE,
+    BLOCKS_STATE,
     BLOCKS_GAME_INITIAL,
     BLOCKS_GAME_PAUSE,
     BLOCKS_GAME_PLAYING,
@@ -92,25 +95,34 @@ export const stopGameTicks = () => {
  * Sets initial stats for a new game.
  */
 export const initGameStats = () => {
-    const { columns, rows, coloringMode } = getState();
+    const {
+        columns,
+        rows,
+        coloringMode,
+        redTilePercentage,
+    } = getState();
     setStateSilently({
-        score: 0,
-        linesCleared: 0,
-        nextShape: createRandomShape(columns, coloringMode),
-        currentShape: createRandomShape(columns, coloringMode),
+        nextShape: createRandomShape(columns, coloringMode, redTilePercentage),
+        currentShape: createRandomShape(columns, coloringMode, redTilePercentage),
         gameBoard: createEmptyBoard(columns, rows),
+    });
+    setState({ score: 0, linesCleared: 0 });
+};
+
+/** Starts a fresh game and enters the play screen. */
+export const startNewGame = () => {
+    stopGameTicks();
+    setState({ gameState: BLOCKS_GAME_INITIAL });
+    setState({
+        appState: BLOCKS_STATE,
+        gameState: BLOCKS_GAME_PLAYING,
+        settingsReturnState: MAIN_MENU_STATE,
     });
 };
 
 /**
- * Resets game and sets state to show main menu.
+ * Restarts the current game immediately.
  */
 export const resetGame = () => {
-    // eslint-disable-next-line no-restricted-globals, no-alert
-    const ok = confirm('Do you want to reset game?');
-    if (ok) {
-        stopGameTicks();
-        initGameStats();
-        setState({ appState: MAIN_MENU_STATE, gameState: BLOCKS_GAME_INITIAL });
-    }
+    startNewGame();
 };

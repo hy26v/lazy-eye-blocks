@@ -1,5 +1,15 @@
-import { INITIAL_BOARD_COLUMNS_COUNT, INITIAL_BOARD_ROWS_COUNT } from '../config';
-import { BLOCKS_GAME_INITIAL, MODE_ALTERNATE_SHAPES } from './consts';
+// ABOUTME: Owns application state and notifies observers about updates.
+// ABOUTME: Defines default settings and controlled state update operations.
+import {
+    DEFAULT_RED_TILE_PERCENTAGE,
+    INITIAL_BOARD_COLUMNS_COUNT,
+    INITIAL_BOARD_ROWS_COUNT,
+} from '../config';
+import {
+    BLOCKS_GAME_INITIAL,
+    MAIN_MENU_STATE,
+    MODE_ALTERNATE_SHAPES,
+} from './consts';
 
 const defaultState = {
     // game settings
@@ -9,12 +19,14 @@ const defaultState = {
     score: 0,
     speedLevel: 0,
     increaseSpeedLevel: true,
+    redTilePercentage: DEFAULT_RED_TILE_PERCENTAGE,
     linesCleared: 0,
 
     rows: INITIAL_BOARD_ROWS_COUNT,
     columns: INITIAL_BOARD_COLUMNS_COUNT,
 
     appState: null,
+    settingsReturnState: MAIN_MENU_STATE,
 
     // kinda hack, see draw method and boar-size-settings component
     shouldCallResizeOnDraw: false,

@@ -1,11 +1,15 @@
 <!doctype html>
+<!-- ABOUTME: Shared shell for the game and its supporting pages. -->
+<!-- ABOUTME: Provides common navigation, metadata, and site-wide styles. -->
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="lazy, eye, disease, amblyopia, condition, treatment, training, dihoptic, game, free, online">
-        <meta name="description" content="free online dihoptic blocks game">
+        <meta name="keywords" content="lazy eye, amblyopia, visual exercise, blocks game">
+        <meta name="description" content="A dichoptic blocks game with adjustable red and blue channels.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="icon.ico"  type="image/x-icon"> 
+        <meta name="theme-color" content="#101216">
+        <link rel="icon" href="icon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/main.css">
 
         <title>{{ title }}</title>
 
@@ -18,17 +22,33 @@
         {{/each}}
 
     </head>
+    <body class="{{#if showNavigation}}site-body{{else}}exercise-body{{/if}}">
+        <div class="site-shell">
+            {{#if showNavigation}}
+                <header class="site-header">
+                    <a class="site-brand" href="index.html" aria-label="Lazy Eye Blocks home">
+                        <span class="brand-mark" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span>
+                        </span>
+                        <span>Lazy Eye Blocks</span>
+                    </a>
+                    <nav class="site-nav" aria-label="Main navigation">
+                        <a href="index.html" {{#if isHome}}aria-current="page"{{/if}}>Home</a>
+                        <a href="exercise.html">Play</a>
+                        <a href="help.html" {{#if isHelp}}aria-current="page"{{/if}}>Help</a>
+                        <a href="about.html" {{#if isAbout}}aria-current="page"{{/if}}>About</a>
+                    </nav>
+                </header>
+            {{/if}}
 
-    {{#if showNavigation }}
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="exercise.html">Exercise</a>
-            <a href="help.html">Help</a>
-            <a href="about.html">About</a>
-        </nav>
-    {{/if}}
+            {{{ body }}}
 
-    <body>
-        {{{ body }}}
+            {{#if showNavigation}}
+                <footer class="site-footer">
+                    <span>A blocks game built for both eyes.</span>
+                    <a href="about.html#credits">Credits and license</a>
+                </footer>
+            {{/if}}
+        </div>
     </body>
 </html>

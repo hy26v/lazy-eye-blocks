@@ -1,24 +1,8 @@
-import { setState, addStateObserver } from '../../../state';
+// ABOUTME: Creates the action that starts a fresh blocks game.
+// ABOUTME: Routes directly into play and refreshes the game state.
 import { createMenuItem } from '../../utils';
-
-import {
-    BLOCKS_STATE,
-    BLOCKS_GAME_PLAYING,
-    BLOCKS_GAME_INITIAL,
-} from '../../../state/consts';
+import { startNewGame } from '../../../blocks/utils/game-utils';
 
 export default function () {
-    const onClick = () => {
-        setState({ appState: BLOCKS_STATE, gameState: BLOCKS_GAME_PLAYING });
-    };
-
-    const button = createMenuItem('New Game', onClick);
-
-    // handle state updates
-    addStateObserver(['gameState'], ({ gameState }) => {
-        if (button) {
-            button.innerText = `${gameState === BLOCKS_GAME_INITIAL ? 'New' : 'Continue'} game`;
-        }
-    });
-    return button;
+    return createMenuItem('New game', startNewGame);
 }

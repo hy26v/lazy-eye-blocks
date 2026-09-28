@@ -1,14 +1,22 @@
+// ABOUTME: Verifies shape creation, collision detection, and movement behavior.
+// ABOUTME: Covers spawn positioning and the hard-drop control lifecycle.
+
 import {
     createShape,
     checkCollisions,
     createEmptyBoard,
     getShapeCoordinatesOnBoard,
+    fireDown,
+    moveShapeLeft,
+    rotateShape,
 } from '../../src/blocks/utils';
 
 import {
     L_SHAPE,
     T_SHAPE,
     O_SHAPE,
+    I_SHAPE,
+    SHAPE_TYPES,
     SHAPE_FORMS,
 } from '../../src/blocks/utils/consts';
 
@@ -20,8 +28,38 @@ describe('shape-utils.js tests', () => {
         const shape = createShape(L_SHAPE, 10);
         expect(shape.type).to.eq(L_SHAPE);
         expect(shape.x).to.eq(5);
-        expect(shape.y).to.eq(-4);
+        expect(shape.y).to.eq(-2);
         expect(shape.possibleShapeForms).to.deep.eq(SHAPE_FORMS[L_SHAPE]);
+    });
+
+    it('spawns outside the board and enters it after one tick', () => {
+        SHAPE_TYPES.forEach((type) => {
+            const shape = createShape(type, 10);
+            const initialCoordinates = getShapeCoordinatesOnBoard(shape);
+
+            expect(initialCoordinates.every(([, y]) => y < 0)).to.eq(true);
+
+            shape.y += 1;
+            const nextTickCoordinates = getShapeCoordinatesOnBoard(shape);
+            expect(nextTickCoordinates.some(([, y]) => y >= 0)).to.eq(true);
+        });
+    });
+
+    it('hard drop locks a shape against further controls', () => {
+        const board = createEmptyBoard(8, 8);
+        const shape = createShape(I_SHAPE, 8);
+
+        fireDown(shape, board);
+
+        const droppedY = shape.y;
+        expect(shape.isDropped).to.eq(true);
+
+        rotateShape(shape, board);
+        moveShapeLeft(shape, board);
+
+        expect(shape.currentShapeFormIndex).to.eq(0);
+        expect(shape.x).to.eq(4);
+        expect(shape.y).to.eq(droppedY);
     });
 
     it('check collisions empty board', () => {
