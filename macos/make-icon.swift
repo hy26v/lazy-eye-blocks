@@ -1,6 +1,8 @@
-// ABOUTME: Draws the Lazy Eye Blocks app icon (the site's 2x2 brand mark) as PNG files for an .iconset.
-// ABOUTME: Run by macos/build.sh with the output .iconset folder as the only argument; iconutil makes the .icns.
+// ABOUTME: Draws the Lazy Eye Blocks logo (the site's 2x2 brand mark) for the app icon and the website favicon.
+// ABOUTME: `make-icon <dir.iconset>` is run by build.sh; `make-icon --favicon src/icon.ico` refreshes the favicon.
 import AppKit
+import ImageIO
+import UniformTypeIdentifiers
 
 func color(_ hex: UInt32) -> NSColor {
     NSColor(
@@ -49,6 +51,23 @@ func drawIcon(pixels: Int) -> Data {
 
     NSGraphicsContext.restoreGraphicsState()
     return rep.representation(using: .png, properties: [:])!
+}
+
+func writeFavicon(to url: URL) {
+    let sizes = [16, 32, 48]
+    let destination = CGImageDestinationCreateWithURL(url as CFURL, UTType.ico.identifier as CFString, sizes.count, nil)!
+    for size in sizes {
+        let image = NSBitmapImageRep(data: drawIcon(pixels: size))!.cgImage!
+        CGImageDestinationAddImage(destination, image, nil)
+    }
+    guard CGImageDestinationFinalize(destination) else {
+        fatalError("Could not write \(url.path)")
+    }
+}
+
+if CommandLine.arguments.count == 3, CommandLine.arguments[1] == "--favicon" {
+    writeFavicon(to: URL(fileURLWithPath: CommandLine.arguments[2]))
+    exit(0)
 }
 
 let iconset = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)

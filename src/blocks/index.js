@@ -13,6 +13,7 @@ import {
 } from './components';
 
 import initGame from './game';
+import { addBrandTitle } from '../ui/utils';
 import { registerTouchEventListener } from './utils';
 import createGameSidebar from './components/game-sidebar/index';
 import createActionButton from './components/action-button';
@@ -49,7 +50,7 @@ export default function () {
     getClassList(toolbar).add('action-button-row');
     const title = createElement('div');
     getClassList(title).add('game-toolbar-title');
-    title.innerText = 'Lazy eye blocks';
+    addBrandTitle(title);
     toolbar.appendChild(title);
     toolbar.appendChild(actionButtons);
 
