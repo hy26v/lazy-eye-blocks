@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
-// hamerjs dependcy is added via cdn
+// ABOUTME: Maps touch swipes on the game canvas to shape movement actions.
+// ABOUTME: Uses the bundled Hammer.js library, so it works without a network connection.
+import Hammer from 'hammerjs';
 
 import { getState } from '../../state';
 

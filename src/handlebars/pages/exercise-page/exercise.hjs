@@ -4,7 +4,6 @@ const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helpe
 
 const scripts = [
     { src: 'js/main.js' },
-    { src: 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js' },
 ];
 
 module.exports = () => {

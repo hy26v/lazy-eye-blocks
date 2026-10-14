@@ -29,6 +29,21 @@ I have a lazy eye myself. I was born with a huge difference in sight between the
 ### GitHub Pages
 Run `npm ci` and `npm run build:prod`, then commit the generated `docs/` files with the source changes. In the repository's Pages settings, select **Deploy from a branch**, branch `master`, folder `/docs`. The site's links and assets use relative paths, so it works at a project URL such as `https://<owner>.github.io/<repository>/`.
 
+### macOS app
+The same game also ships as an offline Mac app (in addition to the website). The app is a small native WebKit window that shows the `docs/` web build from inside the app bundle, so it needs no network connection. Settings are saved on the Mac and stay after a restart.
+
+**Install:** download `LazyEyeBlocks-<version>.dmg`, open it, and drag **Lazy Eye Blocks** to **Applications**. The app is not notarized by Apple, so on the first start macOS shows a warning. Click **Done**, then open **System Settings > Privacy & Security** and click **Open Anyway** for Lazy Eye Blocks. You only do this once. Requires macOS 12 or later; the app runs natively on Apple silicon and Intel Macs.
+
+**Controls:** arrow keys or H/J/K/L move and rotate, Space drops. Use **Go > Back** (Cmd+[) or **Go > Home** (Shift+Cmd+H) to leave the game page.
+
+**Build** (needs Xcode command line tools):
+* On a Mac: `npm ci && npm run build:mac`
+* From another computer: `npm run build:prod`, then `sh macos/build-remote.sh user@mac-host` (for example a Mac on Tailscale SSH)
+
+The result is `dist-mac/LazyEyeBlocks-<version>.dmg`. The version comes from `package.json`. By default the app is ad-hoc signed. To sign with a Developer ID certificate and notarize, set `SIGN_IDENTITY="Developer ID Application: ..."` and `NOTARY_PROFILE=<notarytool keychain profile>`; then macOS opens the app without the warning.
+
+**Test:** on the Mac, install the app and run `sh macos/self-test.sh`. It starts the app twice with `--self-test`, which loads every page from the bundle, starts a game, sends native key presses, checks that saved storage survives a restart, and saves snapshots.
+
 ### Testing
 All tests are located under */test* folder. I've decided to use [mocha](https://mochajs.org/) as a test runner and [chai](https://www.chaijs.com/) as an assertion library.
 * */test/main.js* is a test entry point for the webpack bundling, all tests should be included here.
